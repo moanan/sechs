@@ -45,9 +45,9 @@ class RobotSixAxis:
         for i in range(7):
             f = self.frames[i]
             moment = 0.
-            for j in range(i+1, 6):
-                moment += f.get_moment_with_z(self.frames[j].origin[:3], np.array([0., 0., self.m[j]*9.8]))
-            moment += f.get_moment_with_z(self.get_tool_frame(tool).origin[:3], np.array([0., 0., payload*9.8]))
+            for j in range(i+1, 6): # calculate gravitational moment on each axis
+                moment += f.get_moment_with_z(self.frames[j].origin[:3], np.array([0., 0., -self.m[j]*9.8]))
+            moment += f.get_moment_with_z(self.get_tool_frame(tool).origin[:3], np.array([0., 0., -payload*9.8]))
             # consider acceleration
             I = 0
             for j in range(i+1, 6):
