@@ -27,7 +27,7 @@ payload = 2.
 speed = 1.
 
 # set angular acceleration (rad/s)
-acceleration = 0.001*pi
+acceleration = [0.5*pi, 0.001*pi, 0.5*pi, 0.5*pi, 0.5*pi, 0.5*pi]
 
 # for frame in _robot.frames:
 #     print(np.round(frame.mat, 2))

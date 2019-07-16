@@ -42,7 +42,7 @@ class RobotSixAxis:
 
     def torque(self, tool, payload, acceleration):
         moments = []
-        for i in range(7):
+        for i in range(6):
             f = self.frames[i]
             moment = 0.
             for j in range(i+1, 6): # calculate gravitational moment on each axis
@@ -55,7 +55,7 @@ class RobotSixAxis:
                 I += self.m[j] * dis * dis
             dis_tool = self.frames[i].get_distance_with_z(self.get_tool_frame(tool).origin[:3])
             I += payload * dis_tool * dis_tool
-            moment = abs(moment) + I * acceleration
+            moment = abs(moment) + I * acceleration[i]
             # __consider acceleration
             moments.append(moment)
         return moments
@@ -78,7 +78,8 @@ class RobotSixAxis:
                 X.append(f.origin_x)
                 Y.append(f.origin_y)
                 Z.append(f.origin_z)
-                ax.text(f.origin_x, f.origin_y, f.origin_z, str(round(self.torque(tool, payload, acceleration)[i], 1)), None)
+                if i < 6:
+                    ax.text(f.origin_x, f.origin_y, f.origin_z, str(round(self.torque(tool, payload, acceleration)[i], 1)), None)
                 draw_frame(f)
             tool_frame = self.get_tool_frame(tool)
             draw_frame(tool_frame)
