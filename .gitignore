@@ -30,4 +30,12 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
 # End of https://www.gitignore.io/api/macos
