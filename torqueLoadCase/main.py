@@ -21,7 +21,7 @@ _robot = robot.RobotSixAxis(d, theta, a, alpha, m)
 tool = [0.1, 0., 0., 0.]	# DH
 
 # set payload (kg)
-payload = 2.
+payload = 1.5
 
 # set speed (m/s)
 speed = 1.
