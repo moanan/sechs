@@ -1,5 +1,5 @@
 createdAt: "2019-08-13T21:07:58.845Z"
-updatedAt: "2019-08-16T19:00:45.404Z"
+updatedAt: "2019-08-18T20:58:30.026Z"
 type: "MARKDOWN_NOTE"
 folder: "fcb5ac2d185517c70e1b"
 title: "Design"
@@ -45,6 +45,17 @@ content: '''
   | 4  |  2.1  |  3.2 |   5:1
   | 5  |  3.7  |  5.6 |   6:1
   | 6  |   0   |  0   |   0
+  
+  
+  ### 同步带最大张力估算
+  选用高强度同步带AT3 Synchroflex® Timing Belts。（注：BL robot中最小带轮齿数为10，并且同步带被裁至4mm宽。）
+  ![许用张力、最小直径、最少齿数](:storage/fda5851e-45ce-4273-9ca6-4ffa56b1abc5/03bec6c5.png)
+  其中6mm宽度可承受330N张力，最小带轮齿数z=15。
+  ![belt_tension.png](:storage/fda5851e-45ce-4273-9ca6-4ffa56b1abc5/947d292c.png)
+  若按Axis-2输出带轮半径r=20mm计算，48Nm的力矩输出则需要2400N的张力，哈哈哈哈哈哈😂。
+  
+  [在线计算工具](https://www.mulco.de/?q=en/content/cad-tool-mulco-belt-pilot)
+  
 '''
 linesHighlighted: []
 isStarred: false
