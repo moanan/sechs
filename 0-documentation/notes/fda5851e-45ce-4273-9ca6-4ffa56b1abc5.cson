@@ -1,5 +1,5 @@
 createdAt: "2019-08-13T21:07:58.845Z"
-updatedAt: "2019-08-18T20:58:30.026Z"
+updatedAt: "2019-11-07T18:49:16.488Z"
 type: "MARKDOWN_NOTE"
 folder: "fcb5ac2d185517c70e1b"
 title: "Design"
@@ -35,12 +35,14 @@ content: '''
   ### 关节力矩估算
   ![torqueNeeded.png](:storage/fda5851e-45ce-4273-9ca6-4ffa56b1abc5/c9044fb9.png)
   
-  选用电机Turnigy Aerodrive SK3 - 4250-350kv，可提供1.18Nm扭矩。按1.5倍安全系数，可计算得到各轴所需的安全扭矩。由此设计各轴所需减速比。
+  选用电机Turnigy Aerodrive SK3 - 4250-350kv，可提供1.18Nm扭矩。
+  选用大电机给Axis2，估计可提供3Nm扭矩。
+  按1.5倍安全系数，可计算得到各轴所需的安全扭矩。由此设计各轴所需减速比。
   
   |Axis|最小扭矩|安全扭矩|设计减速比|电机负载扭矩|
   |----|-------|------|---------|----------|
   | 1  |  2.3  |  3.5 |   5:1
-  | 2  |  31.5 |  48  |  42:1??1.5kg->36:1
+  | 2  |  31.5 |  48  |  16:1
   | 3  |  12.2 |  18.3|  25:1
   | 4  |  2.1  |  3.2 |   5:1
   | 5  |  3.7  |  5.6 |   6:1
@@ -56,6 +58,7 @@ content: '''
   
   [在线计算工具](https://www.mulco.de/?q=en/content/cad-tool-mulco-belt-pilot)
   
+  ### 改用10mm宽度的T5齿型同步带
 '''
 linesHighlighted: []
 isStarred: false

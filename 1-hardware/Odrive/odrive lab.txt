@@ -1,0 +1,78 @@
+odrive lab
+---
+vbus_voltage = 12.3226318359375 (float)
+serial_number = 3853376F3437 (int)
+hw_version_major = 3 (int)
+hw_version_minor = 5 (int)
+hw_version_variant = 48 (int)
+fw_version_major = 0 (int)
+fw_version_minor = 0 (int)
+fw_version_revision = 0 (int)
+fw_version_unreleased = 1 (int)
+user_config_loaded = True (bool)
+brake_resistor_armed = True (bool)
+system_stats:
+  uptime = 550454 (int)
+  min_heap_space = 14264 (int)
+  min_stack_space_axis0 = 7772 (int)
+  min_stack_space_axis1 = 7860 (int)
+  min_stack_space_comms = 3136 (int)
+  min_stack_space_usb = 1332 (int)
+  min_stack_space_uart = 3964 (int)
+  min_stack_space_usb_irq = 1828 (int)
+  min_stack_space_startup = 560 (int)
+  usb: ...
+  i2c: ...
+config:
+  brake_resistance = 2.0 (float)
+  enable_uart = True (bool)
+  enable_i2c_instead_of_can = True (bool)
+  enable_ascii_protocol_on_usb = True (bool)
+  dc_bus_undervoltage_trip_level = 8.0 (float)
+  dc_bus_overvoltage_trip_level = 51.840003967285156 (float)
+  gpio1_pwm_mapping: ...
+  gpio2_pwm_mapping: ...
+  gpio3_pwm_mapping: ...
+  gpio4_pwm_mapping: ...
+axis0:
+  error = 0x0000 (int)
+  step_dir_active = False (bool)
+  current_state = 1 (int)
+  requested_state = 0 (int)
+  loop_counter = 4390886 (int)
+  config: ...
+  get_temp()
+  motor: ...
+  controller: ...
+  encoder: ...
+  sensorless_estimator: ...
+  trap_traj: ...
+axis1:
+  error = 0x0000 (int)
+  step_dir_active = False (bool)
+  current_state = 1 (int)
+  requested_state = 0 (int)
+  loop_counter = 4390896 (int)
+  config: ...
+  get_temp()
+  motor: ...
+  controller: ...
+  encoder: ...
+  sensorless_estimator: ...
+  trap_traj: ...
+can:
+  node_id = 0 (int)
+  TxMailboxCompleteCallbackCnt = 0 (int)
+  TxMailboxAbortCallbackCnt = 0 (int)
+  received_msg_cnt = 0 (int)
+  received_ack = 0 (int)
+  unexpected_errors = 0 (int)
+  unhandled_messages = 0 (int)
+test_property = 0 (int)
+test_function(delta: int)
+get_oscilloscope_val(index: int)
+get_adc_voltage(gpio: int)
+save_configuration()
+erase_configuration()
+reboot()
+enter_dfu_mode()
