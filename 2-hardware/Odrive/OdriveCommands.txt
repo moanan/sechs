@@ -29,7 +29,9 @@ dump_errors(odrv0)
 dump_errors(odrv0, True)
 
 // position control (absolute position)
-odrv0.axis0.controller.pos_setpoint = 1000
+odrv0.axis0.controller.pos_setpoint = 1000 //move very fast, may overspeed
+odrv0.axis0.controller.move_to_pos(1000)   //slowly move to the set position
+
 
 
 // velocity control (sensorless)
@@ -51,7 +53,8 @@ odrv0.axis0.controller.config.control_mode =
 4: trajectory control
 
 
-
+// liveplotter tool
+start_liveplotter(lambda:[odrv0.axis0.encoder.pos_estimate, odrv0.axis0.controller.pos_setpoint])
 
 
 

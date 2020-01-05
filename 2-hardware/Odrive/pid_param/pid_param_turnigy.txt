@@ -1,0 +1,51 @@
+2020_01_06 Turnigy KV350
+
+odrv0.axis0.controller.config 
+	vel_ramp_rate = 10000.0 (float)
+	vel_limit_tolerance = 1.2000000476837158 (float)
+	pos_gain = 500.0 (float)
+	vel_limit = 100000.0 (float)
+	setpoints_in_cpr = False (bool)
+	control_mode = 3 (int)
+	vel_gain = 0.0001500000071246177 (float)
+	vel_integrator_gain = 0.0005000000237487257 (float)
+
+odrv0.axis0.config
+	startup_encoder_index_search = False (bool)
+	counts_per_step = 2.0 (float)
+	general_lockin:
+	  ramp_time = 0.4000000059604645 (float)
+	  vel = 40.0 (float)
+	  accel = 20.0 (float)
+	  current = 10.0 (float)
+	  finish_on_vel = False (bool)
+	  finish_distance = 100.0 (float)
+	  ramp_distance = 3.1415927410125732 (float)
+	  finish_on_distance = False (bool)
+	  finish_on_enc_idx = False (bool)
+	startup_closed_loop_control = False (bool)
+	startup_sensorless_control = False (bool)
+	watchdog_timeout = 0.0 (float)
+	step_gpio_pin = 1 (int)
+	dir_gpio_pin = 2 (int)
+	calibration_lockin:
+	  ramp_time = 0.4000000059604645 (float)
+	  vel = 40.0 (float)
+	  accel = 20.0 (float)
+	  current = 10.0 (float)
+	  ramp_distance = 3.1415927410125732 (float)
+	sensorless_ramp:
+	  ramp_time = 0.4000000059604645 (float)
+	  vel = 400.0 (float)
+	  accel = 200.0 (float)
+	  current = 10.0 (float)
+	  finish_on_vel = True (bool)
+	  finish_distance = 100.0 (float)
+	  ramp_distance = 3.1415927410125732 (float)
+	  finish_on_distance = False (bool)
+	  finish_on_enc_idx = False (bool)
+	startup_motor_calibration = False (bool)
+	enable_step_dir = False (bool)
+	startup_encoder_offset_calibration = False (bool)
+
+
