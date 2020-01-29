@@ -7,10 +7,10 @@ import frame
 
 
 # set DH params(data from ur3)
-d = [0.1519, 0., 0., 0.11235, 0.08535, 0.0819]
-theta = [0., 0., 0., 0., 0., 0.]
-a = [0., -.24365, -.21325, 0., 0., 0.]
-alpha = [0.5*pi, 0., 0., 0.5*pi, -0.5*pi, 0]
+d = [0.03, 0., 0.06, 0., 0., 0.]
+theta = [0., -0.5*pi, 0., 0., 1.5*pi, 0.]
+a = [0., 0.2, 0.2, 0.1, 0., 0.]
+alpha = [0.5*pi, 0., -0.5*pi, 0.5*pi, 0.5*pi, 0.]
 # set mass (kg)
 m = [2., 2., 2., 1.5, 0.6, 0.5]
 
@@ -27,7 +27,7 @@ payload = 1.5
 speed = 1.
 
 # set angular acceleration (rad/s)
-acceleration = [0.5*pi, 1*pi, 0.5*pi, 0.5*pi, 0.5*pi, 0.5*pi]
+acceleration = [0.5*pi, 0.5*pi, 1*pi, 0.5*pi, 0.5*pi, 0.5*pi]
 
 # for frame in _robot.frames:
 #     print(np.round(frame.mat, 2))
