@@ -21,13 +21,13 @@ _robot = robot.RobotSixAxis(d, theta, a, alpha, m)
 tool = [0.1, 0., 0., 0.]	# DH
 
 # set payload (kg)
-payload = 1.5
+payload = 2
 
 # set speed (m/s)
 speed = 1.
 
 # set angular acceleration (rad/s)
-acceleration = [0.5*pi, 0.5*pi, 1*pi, 0.5*pi, 0.5*pi, 0.5*pi]
+acceleration = [1*pi, 2*pi, 2*pi, 2*pi, 2*pi, 2*pi]
 
 # for frame in _robot.frames:
 #     print(np.round(frame.mat, 2))
