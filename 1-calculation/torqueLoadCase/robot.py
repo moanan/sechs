@@ -125,6 +125,11 @@ class RobotSixAxis:
             plot()
             # redraw canvas while idle
             figure.canvas.draw_idle()
+            # print torque values
+            for i in range(5):
+                # print(self.torque(tool, payload, acceleration)[i])
+                print("Torque of {0}th joint: {1}".format(i, self.torque(tool, payload, acceleration)[i]))
+            print("")
 
         samp1.on_changed(update)
         samp2.on_changed(update)
