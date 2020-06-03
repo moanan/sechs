@@ -6,6 +6,7 @@
 local
 .idea
 OldVersions
+lockfile.lck
 
 ### macOS ###
 # General
