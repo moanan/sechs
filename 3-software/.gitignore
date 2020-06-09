@@ -1,5 +1,7 @@
 # custom
+.catkin_workspace
 .idea/
+.vscode/
 test*
 
 devel/
