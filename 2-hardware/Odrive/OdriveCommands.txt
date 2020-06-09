@@ -18,6 +18,7 @@ odrv0.axis0.requested_state =
 1: idle
 3: calibration
 5: sensorless
+6: AXIS_STATE_ENCODER_INDEX_SEARCH(with precalibrated encoder, run this state first for the index searching)
 8: position control
 
 odrv0.axis0.current_state
@@ -29,8 +30,8 @@ dump_errors(odrv0)
 dump_errors(odrv0, True)
 
 // position control (absolute position)
-odrv0.axis0.controller.pos_setpoint = 1000 //move very fast, may overspeed
-odrv0.axis0.controller.move_to_pos(1000)   //slowly move to the set position
+odrv0.axis0.controller.pos_setpoint = 1000 //move very fast, may overspeed(position control, go to the set postion as soon as possible)
+odrv0.axis0.controller.move_to_pos(1000)   //slowly move to the set position(trajectory control mode which smooths the movement and keeps vel and accel under certain limit)
 
 
 
@@ -54,7 +55,8 @@ odrv0.axis0.controller.config.control_mode =
 
 
 // liveplotter tool
-start_liveplotter(lambda:[odrv0.axis0.encoder.pos_estimate, odrv0.axis0.controller.pos_setpoint])
+start_liveplotter(lambda:[odrv0.axis0.encoder.pos_estimate, odrv0.axis0.controller.pos_setpoint]) // for axis 0
+start_liveplotter(lambda:[odrv0.axis1.encoder.pos_estimate, odrv0.axis1.controller.pos_setpoint]) // for axis 0
 
 
 

@@ -1,0 +1,8 @@
+<launch>
+    <!--load parameters-->
+    <rosparam file="$(find sechs_odrive)/cfg/axis_1.yaml" command="load"/>
+    <!--load nodes-->
+    <node name="odrive_interface" pkg="sechs_odrive" type="odrive_interface.py" />
+    <!--delete parameters-->
+    <!--<rosparam command="delete" param="axis_1" />-->
+</launch>

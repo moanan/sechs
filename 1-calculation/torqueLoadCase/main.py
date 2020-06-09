@@ -6,11 +6,18 @@ import robot
 import frame
 
 
-# set DH params(data from ur3)
-d = [0.08, 0.06, 0., 0.2, 0.1, 0.08]
-theta = [0., 0., 0.5*pi, 0., 0., 0.]
+# # set DH params(data from ur3)
+# d = [0.08, 0.06, 0., 0.2, 0.1, 0.08]
+# theta = [0., 0., 0.5*pi, 0., 0., 0.]
+# a = [0., 0.2, 0., 0., 0., 0.]
+# alpha = [0.5*pi, 0., 0.5*pi, -0.5*pi, 0.5*pi, 0.]
+
+# set DH params(new)
+d = [0.08, 0., 0.06, 0.2, 0.1, 0.08]
+theta = [0., -0.5*pi, 0.5*pi, 0., 0., 0.]
 a = [0., 0.2, 0., 0., 0., 0.]
-alpha = [0.5*pi, 0., 0.5*pi, -0.5*pi, 0.5*pi, 0.]
+alpha = [-0.5*pi, 0., 0.5*pi, 0.5*pi, -0.5*pi, 0.]
+
 # set mass (kg)
 m = [2., 2., 2., 1.5, 0.6, 0.5]
 

@@ -1,5 +1,6 @@
 # custom
 .idea/
+test*
 
 devel/
 logs/

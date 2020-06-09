@@ -1,0 +1,9 @@
+
+
+DH parameters to urdf file: https://adohaha.github.io/DH2URDF/
+
+```
+sudo ssh ubuntu@192.168.179.113
+```
+password: ubuntu
+vncserver password: 123456
