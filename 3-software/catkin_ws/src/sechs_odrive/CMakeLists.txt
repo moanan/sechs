@@ -50,7 +50,7 @@ find_package(catkin REQUIRED COMPONENTS
 
 ## Generate messages in the 'msg' folder
 add_message_files(FILES
-  Position_Command.msg
+  Sechs_Axes.msg
 )
 
 ## Generate services in the 'srv' folder

@@ -5,4 +5,5 @@
     <node name="odrive_interface" pkg="sechs_odrive" type="odrive_interface.py" />
     <!--delete parameters-->
     <!--<rosparam command="delete" param="axis_1" />-->
+    <node name="gui" pkg="sechs_gui" type="sechs_gui.py" />
 </launch>
