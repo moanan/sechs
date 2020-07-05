@@ -19,16 +19,13 @@ class Sechs:
         # find odrives and load axes
         # --------------------------
 
-        odrv0 = odrive.find_any(serial_number="208A3592524B") # 56V
-        # odrv1 = odrive.find_any(serial_number="2083359F524B") # 24V
+        odrv0 = odrive.find_any(serial_number="208A3592524B") # 56V axis_1 axis_2
+        odrv1 = odrive.find_any(serial_number="2083359F524B") # 24V axis_0
         # odrv2 = None
         self.axes = []
+        self.axes.append(odrv1.axis0)
         self.axes.append(odrv0.axis0)
         self.axes.append(odrv0.axis1)
-        # self.axes.append(odrv1.axis0)
-        # axes.append(odrv1.axis1)
-        # axes.append(odrv2.axis0)
-        # axes.append(odrv2.axis1)
 
         # ---------------
         # load directions
@@ -54,7 +51,7 @@ class Sechs:
         #     self.axes[i].config.startup_encoder_index_search = True
         #     # ...
 
-        for i in range(1, 2):
+        for i in range(0, 3):
             self.axes[i].config.startup_encoder_index_search = rospy.get_param(("/axis_%d/startup_encoder_index_search" % i))
             self.axes[i].motor.config.pre_calibrated = rospy.get_param(("/axis_%d/motor_config/pre_calibrated" % i))
             self.axes[i].motor.config.pole_pairs = rospy.get_param(("/axis_%d/motor_config/pole_pairs" % i))
@@ -72,18 +69,18 @@ class Sechs:
             self.axes[i].controller.config.control_mode = rospy.get_param(("/axis_%d/controller_config/control_mode" % i))
     
     def start_closed_loop(self):
-        for i in range(1, 2):
+        for i in range(0, 3):
             self.axes[i].requested_state = AXIS_STATE_CLOSED_LOOP_CONTROL 
 
     @property
     def axes_value(self):
         sensor_msg = Sechs_Axes()
-        for i in range(1, 2):
+        for i in range(0, 3):
             sensor_msg.values[i] = self.axes[i].encoder.pos_estimate * pi / 2000.0 / self.reductions[i]
         return sensor_msg
     
     def move_axes(self, values):
-        for i in range(1, 2):
+        for i in range(0, 3):
             sechs.axes[i].controller.move_to_pos(values[i] * 2000.0 * sechs.reductions[i] / pi)
 
 
