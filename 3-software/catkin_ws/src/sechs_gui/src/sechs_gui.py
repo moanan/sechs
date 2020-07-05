@@ -21,13 +21,13 @@ def value_adjust():
 
 def button_plus_clicked(index):
     global PUB, VALUS_SET
-    VALUS_SET.values[index] += 0.005
+    VALUS_SET.values[index] += control_speed_var.get()
     PUB.publish(VALUS_SET)
 
 
 def button_minus_clicked(index):
     global PUB, VALUS_SET
-    VALUS_SET.values[index] -= 0.005
+    VALUS_SET.values[index] -= control_speed_var.get()
     PUB.publish(VALUS_SET)
 
 
@@ -64,6 +64,21 @@ function2_rb = tk.Radiobutton(function_select_f, text='Cartesian Base', font=12,
 function2_rb.pack(side="left")
 function3_rb = tk.Radiobutton(function_select_f, text='Cartesian TCF', font=12, variable=control_mode_var, value=2, command=function_config)
 function3_rb.pack(side="left")
+
+# ===============
+# speed select
+# ===============
+
+function_select_s = tk.Frame(window)
+function_select_s.pack()
+
+control_speed_var = tk.DoubleVar()
+speed1_rb = tk.Radiobutton(function_select_s, text='slow', font=12, variable=control_speed_var, value=0.005)
+speed1_rb.pack(side="left")
+speed2_rb = tk.Radiobutton(function_select_s, text='medium', font=12, variable=control_speed_var, value=0.015)
+speed2_rb.pack(side="left")
+speed3_rb = tk.Radiobutton(function_select_s, text='fast', font=12, variable=control_speed_var, value=0.025)
+speed3_rb.pack(side="left")
 
 # ================
 # 6 inputs outputs

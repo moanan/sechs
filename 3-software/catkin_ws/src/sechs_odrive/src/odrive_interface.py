@@ -20,10 +20,18 @@ class Sechs:
         # --------------------------
 
         odrv0 = odrive.find_any(serial_number="208A3592524B") # 56V axis_1 axis_2
+        # try:
+        #     odrv0.reboot()
+        # except:
+        #     pass
+        # odrv0 = odrive.find_any(serial_number="208A3592524B") # 56V axis_1 axis_2
+        rospy.loginfo("odrive_0 found!")
         odrv1 = odrive.find_any(serial_number="2083359F524B") # 24V axis_0
+        rospy.loginfo("odrive_1 found!")
         # odrv2 = None
         self.axes = []
         self.axes.append(odrv1.axis0)
+        # self.axes.append(None)
         self.axes.append(odrv0.axis0)
         self.axes.append(odrv0.axis1)
 
@@ -52,25 +60,33 @@ class Sechs:
         #     # ...
 
         for i in range(0, 3):
-            self.axes[i].config.startup_encoder_index_search = rospy.get_param(("/axis_%d/startup_encoder_index_search" % i))
-            self.axes[i].motor.config.pre_calibrated = rospy.get_param(("/axis_%d/motor_config/pre_calibrated" % i))
-            self.axes[i].motor.config.pole_pairs = rospy.get_param(("/axis_%d/motor_config/pole_pairs" % i))
-            self.axes[i].motor.config.current_lim = rospy.get_param(("/axis_%d/motor_config/current_lim" % i))
-            self.axes[i].motor.config.calibration_current = rospy.get_param(("/axis_%d/motor_config/calibration_current" % i))
-            self.axes[i].motor.config.current_lim_tolerance = rospy.get_param(("/axis_%d/motor_config/current_lim_tolerance" % i))
-            self.axes[i].encoder.config.pre_calibrated = rospy.get_param(("/axis_%d/encoder_config/pre_calibrated" % i))
-            self.axes[i].encoder.config.cpr = rospy.get_param(("/axis_%d/encoder_config/cpr" % i))
-            self.axes[i].encoder.config.use_index = rospy.get_param(("/axis_%d/encoder_config/use_index" % i))
-            self.axes[i].controller.config.vel_limit = rospy.get_param(("/axis_%d/controller_config/vel_limit" % i))
-            self.axes[i].controller.config.vel_limit_tolerance = rospy.get_param(("/axis_%d/controller_config/vel_limit_tolerance" % i))
-            self.axes[i].controller.config.pos_gain = rospy.get_param(("/axis_%d/controller_config/pos_gain" % i))
-            self.axes[i].controller.config.vel_gain = rospy.get_param(("/axis_%d/controller_config/vel_gain" % i))
-            self.axes[i].controller.config.vel_integrator_gain = rospy.get_param(("/axis_%d/controller_config/vel_integrator_gain" % i))
-            self.axes[i].controller.config.control_mode = rospy.get_param(("/axis_%d/controller_config/control_mode" % i))
+            # # self.axes[i].config.startup_encoder_index_search = rospy.get_param(("/axis_%d/startup_encoder_index_search" % i))
+            # # self.axes[i].motor.config.pre_calibrated = rospy.get_param(("/axis_%d/motor_config/pre_calibrated" % i))
+            # # self.axes[i].motor.config.pole_pairs = rospy.get_param(("/axis_%d/motor_config/pole_pairs" % i))
+            # self.axes[i].motor.config.current_lim = rospy.get_param(("/axis_%d/motor_config/current_lim" % i))
+            # self.axes[i].motor.config.calibration_current = rospy.get_param(("/axis_%d/motor_config/calibration_current" % i))
+            # self.axes[i].motor.config.current_lim_tolerance = rospy.get_param(("/axis_%d/motor_config/current_lim_tolerance" % i))
+            # # self.axes[i].encoder.config.pre_calibrated = rospy.get_param(("/axis_%d/encoder_config/pre_calibrated" % i))
+            # # self.axes[i].encoder.config.cpr = rospy.get_param(("/axis_%d/encoder_config/cpr" % i))
+            # # self.axes[i].encoder.config.use_index = rospy.get_param(("/axis_%d/encoder_config/use_index" % i))
+            # self.axes[i].controller.config.vel_limit = rospy.get_param(("/axis_%d/controller_config/vel_limit" % i))
+            # self.axes[i].controller.config.vel_limit_tolerance = rospy.get_param(("/axis_%d/controller_config/vel_limit_tolerance" % i))
+            # self.axes[i].controller.config.pos_gain = rospy.get_param(("/axis_%d/controller_config/pos_gain" % i))
+            # self.axes[i].controller.config.vel_gain = rospy.get_param(("/axis_%d/controller_config/vel_gain" % i))
+            # self.axes[i].controller.config.vel_integrator_gain = rospy.get_param(("/axis_%d/controller_config/vel_integrator_gain" % i))
+            # # self.axes[i].controller.config.control_mode = rospy.get_param(("/axis_%d/controller_config/control_mode" % i))
+            pass
     
     def start_closed_loop(self):
+        # rospy.loginfo("start calibration")
+        # for i in range(1, 3):
+        #     rospy.loginfo("calibrating axis_%d" % i)
+        #     self.axes[i].requested_state = AXIS_STATE_FULL_CALIBRATION_SEQUENCE
+        #     time.sleep(15)
         for i in range(0, 3):
-            self.axes[i].requested_state = AXIS_STATE_CLOSED_LOOP_CONTROL 
+            rospy.loginfo("axis_01 entering closed loop control!")
+            self.axes[i].requested_state = AXIS_STATE_CLOSED_LOOP_CONTROL
+            time.sleep(1)
 
     @property
     def axes_value(self):
@@ -86,7 +102,7 @@ class Sechs:
 
 def callback_pos_command(sechs_axes):
     global sechs
-    rospy.loginfo("pos_1: %f", sechs_axes.values[1])
+    # rospy.loginfo("pos_1: %f", sechs_axes.values[1])
     sechs.move_axes(sechs_axes.values)
 
 
