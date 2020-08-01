@@ -8,10 +8,10 @@ from sechs_odrive.msg import Sechs_Axes
 
 
 def value_adjust():
-    global labels_value, VALUS
+    global labels_value, VALUES
     if control_mode_var.get() == 0:
         for i in range(6):
-            labels_value[i].config(text=("%.3f" % VALUS[i]))
+            labels_value[i].config(text=("%.3f" % VALUES[i]))
     else:
         # **************************
         # to be developed
@@ -19,16 +19,28 @@ def value_adjust():
         pass
 
 
+# ===============
+# jogging
+# ===============
+
+
 def button_plus_clicked(index):
-    global PUB, VALUS_SET
-    VALUS_SET.values[index] += control_speed_var.get()
-    PUB.publish(VALUS_SET)
+    global PUB, VALUES_SET
+    VALUES_SET.values[index] += control_speed_var.get()
+    PUB.publish(VALUES_SET)
 
 
 def button_minus_clicked(index):
-    global PUB, VALUS_SET
-    VALUS_SET.values[index] -= control_speed_var.get()
-    PUB.publish(VALUS_SET)
+    global PUB, VALUES_SET
+    VALUES_SET.values[index] -= control_speed_var.get()
+    PUB.publish(VALUES_SET)
+
+
+def button_home_clicked():
+    global PUB, VALUES_SET
+    for i in range(6):
+        VALUES_SET.values[i] = 0.0
+    PUB.publish(VALUES_SET)
 
 
 def function_config():
@@ -47,7 +59,7 @@ def function_config():
 
 
 window = tk.Tk()
-window.title("sechs")
+window.title("sechs jogging")
 window.geometry("400x300")
 
 # ===============
@@ -69,15 +81,16 @@ function3_rb.pack(side="left")
 # speed select
 # ===============
 
-function_select_s = tk.Frame(window)
-function_select_s.pack()
+speed_select_f = tk.Frame(window)
+speed_select_f.pack()
 
 control_speed_var = tk.DoubleVar()
-speed1_rb = tk.Radiobutton(function_select_s, text='slow', font=12, variable=control_speed_var, value=0.005)
+speed1_rb = tk.Radiobutton(speed_select_f, text='slow', font=12, variable=control_speed_var, value=0.005)
 speed1_rb.pack(side="left")
-speed2_rb = tk.Radiobutton(function_select_s, text='medium', font=12, variable=control_speed_var, value=0.015)
+speed1_rb.invoke() # initial value: slow
+speed2_rb = tk.Radiobutton(speed_select_f, text='medium', font=12, variable=control_speed_var, value=0.025)
 speed2_rb.pack(side="left")
-speed3_rb = tk.Radiobutton(function_select_s, text='fast', font=12, variable=control_speed_var, value=0.025)
+speed3_rb = tk.Radiobutton(speed_select_f, text='fast', font=12, variable=control_speed_var, value=0.045)
 speed3_rb.pack(side="left")
 
 # ================
@@ -109,22 +122,30 @@ for i in range(6):
     labels_control.append(lc)
     labels_value.append(lv)
 
+# ===============
+# other buttons
+# ===============
+
+other_buttons_f = tk.Frame(window)
+other_buttons_f.pack(pady=10)
+
+tk.Button(other_buttons_f, text="home", command=button_home_clicked).pack(side="left", padx=10)
+
 # =================
 # ROS communication
 # =================
 
-VALUS = [0.0] * 6
-VALUS_SET = Sechs_Axes()
+VALUES = [0.0] * 6
+VALUES_SET = Sechs_Axes()
 
 
 def callback_encoder_feedback(sechs_axes):
     for i in range(6):
-        VALUS[i] = sechs_axes.values[i]
+        VALUES[i] = sechs_axes.values[i]
     value_adjust()
 
-flag_continue = False
-rospy.init_node('gui', anonymous=False)
-# time.sleep(5)
+
+rospy.init_node("jogging_gui", anonymous=False)
 rospy.Subscriber('Sechs/Encoder_Feedback', Sechs_Axes, callback_encoder_feedback)
 PUB = rospy.Publisher('Sechs/Position_Command', Sechs_Axes , queue_size=10)
 

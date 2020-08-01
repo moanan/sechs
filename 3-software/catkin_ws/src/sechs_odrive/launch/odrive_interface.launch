@@ -5,6 +5,8 @@
     <rosparam file="$(find sechs_odrive)/cfg/axis_0.yaml" command="load"/>
     <rosparam file="$(find sechs_odrive)/cfg/axis_1.yaml" command="load"/>
     <rosparam file="$(find sechs_odrive)/cfg/axis_2.yaml" command="load"/>
+    <rosparam file="$(find sechs_odrive)/cfg/axis_3.yaml" command="load"/>
+    <rosparam file="$(find sechs_odrive)/cfg/axis_4.yaml" command="load"/>
     <!--load nodes-->
     <!--<node name="odrive_interface" pkg="sechs_odrive" type="odrive_interface.py" machine="rpi" />-->
     <!--delete parameters-->
