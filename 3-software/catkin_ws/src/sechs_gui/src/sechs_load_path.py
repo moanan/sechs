@@ -21,7 +21,7 @@ path = np.loadtxt(rospkg.RosPack().get_path("sechs_gui")+"/src/path.txt")
 rospy.init_node('offline', anonymous=False)
 PUB = rospy.Publisher('Sechs/Position_Command', Sechs_Axes , queue_size=10)
 
-VALUES_SET = Sechs_Axes()
+VALUES_SET = Sechs_Pos()
 
 def pub(values):
     for i in range(6):

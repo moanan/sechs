@@ -55,9 +55,11 @@ odrv0.axis0.controller.config.control_mode =
 
 
 // liveplotter tool
+// position
 start_liveplotter(lambda:[odrv0.axis0.encoder.pos_estimate, odrv0.axis0.controller.pos_setpoint]) // for axis 0
 start_liveplotter(lambda:[odrv0.axis1.encoder.pos_estimate, odrv0.axis1.controller.pos_setpoint]) // for axis 0
-
+// current
+start_liveplotter(lambda:[odrv0.axis0.motor.current_control.Iq_measured, odrv0.axis0.motor.current_control.Iq_setpoint])
 
 
 // temp

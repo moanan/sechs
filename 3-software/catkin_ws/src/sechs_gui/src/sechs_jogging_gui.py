@@ -4,7 +4,7 @@ import tkinter as tk
 import rospy
 import time
 
-from sechs_odrive.msg import Sechs_Axes
+from sechs_odrive.msg import *
 
 
 def value_adjust():
@@ -136,18 +136,18 @@ tk.Button(other_buttons_f, text="home", command=button_home_clicked).pack(side="
 # =================
 
 VALUES = [0.0] * 6
-VALUES_SET = Sechs_Axes()
+VALUES_SET = Sechs_Pos()
 
 
-def callback_encoder_feedback(sechs_axes):
+def callback_feedback(feedback):
     for i in range(6):
-        VALUES[i] = sechs_axes.values[i]
+        VALUES[i] = feedback.pos.values[i]
     value_adjust()
 
 
 rospy.init_node("jogging_gui", anonymous=False)
-rospy.Subscriber('Sechs/Encoder_Feedback', Sechs_Axes, callback_encoder_feedback)
-PUB = rospy.Publisher('Sechs/Position_Command', Sechs_Axes , queue_size=10)
+rospy.Subscriber('Sechs/Encoder_Feedback', Sechs_State, callback_feedback)
+PUB = rospy.Publisher('Sechs/Position_Command', Sechs_Pos , queue_size=10)
 
 window.mainloop()
 

@@ -8,7 +8,7 @@ from odrive.enums import *
 from math import pi
 
 import rospy
-from sechs_odrive.msg import Sechs_Axes
+from sechs_odrive.msg import *
 # from sensor_msgs.msg import Joy
 
 
@@ -90,11 +90,15 @@ class Sechs:
             time.sleep(1)
 
     @property
-    def axes_value(self):
-        sensor_msg = Sechs_Axes()
+    def axes_feedback(self):
+        sensor_msg = Sechs_State()
+        # pos
         for i in range(0, 5):
-            sensor_msg.values[i] = (self.axes[i].encoder.pos_estimate + self.init_offset[i]) * pi * self.directions[i] / 2000.0 / self.reductions[i]
-        sensor_msg.values[2] -= sensor_msg.values[1]  # joint 2 velocity coupled
+            sensor_msg.pos.values[i] = (self.axes[i].encoder.pos_estimate + self.init_offset[i]) * pi * self.directions[i] / 2000.0 / self.reductions[i]
+        sensor_msg.pos.values[2] -= sensor_msg.pos.values[1]  # joint 2 velocity coupled
+        # cur
+        for i in range(0, 5):
+            sensor_msg.cur.values[i] = self.axes[i].motor.current_control.Iq_measured
         return sensor_msg
     
     def move_to(self, values):
@@ -113,10 +117,10 @@ class Sechs:
         self.move_to(values_cpr)
 
 
-def callback_pos_command(sechs_axes):
+def callback_pos_command(pos_command):
     global sechs
-    # rospy.loginfo("pos_1: %f", sechs_axes.values[1])
-    sechs.move_axes(sechs_axes.values)
+    # rospy.loginfo("pos_1: %f", pos_command.values[1])
+    sechs.move_axes(pos_command.values)
 
 
 rospy.init_node('odrive_interface', anonymous=False)
@@ -125,12 +129,12 @@ sechs = Sechs()
 sechs.start_closed_loop()
 
 # rospy.loginfo("%f", sechs.axes[1].controller.config.vel_gain)
-rospy.Subscriber('Sechs/Position_Command', Sechs_Axes, callback_pos_command)
-pub = rospy.Publisher('Sechs/Encoder_Feedback', Sechs_Axes , queue_size=10)
+rospy.Subscriber('Sechs/Position_Command', Sechs_Pos, callback_pos_command)
+pub = rospy.Publisher('Sechs/Encoder_Feedback', Sechs_State , queue_size=10)
 
 rate = rospy.Rate(100) 
 while not rospy.is_shutdown():
-    pub.publish(sechs.axes_value)
+    pub.publish(sechs.axes_feedback)
     rate.sleep()
 
 sechs.close()

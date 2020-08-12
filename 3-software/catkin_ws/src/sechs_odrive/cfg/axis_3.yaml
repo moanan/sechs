@@ -44,7 +44,7 @@ axis_3:
   # ----------
 
   controller_config:
-    vel_limit: 6144.0 # (encoder counts / sec)
+    vel_limit: 9261.0 # (encoder counts / sec)
     vel_limit_tolerance: 2.6
     pos_gain: 100.0
     vel_gain: 0.0006
