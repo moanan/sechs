@@ -1,0 +1,19 @@
+# =====================
+# T-Motor AS-2820 KV880
+# =====================
+
+motor_config:
+    pole_pairs: 7
+    current_lim: 10.0 # (A)
+    calibration_current: 10.0 # (A)
+    torque_constant: 0.00939772727
+
+encoder_config:
+    cpr: 4000
+
+controller_config:
+    vel_limit: 3.0 # (encoder counts / sec)
+    vel_limit_tolerance: 2.0
+    pos_gain: 35.0
+    vel_gain: 0.023
+    vel_integrator_gain: 0.0
