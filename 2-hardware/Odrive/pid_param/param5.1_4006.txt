@@ -1,0 +1,19 @@
+# =======================
+# T-Motor MN4006-23 KV380
+# =======================
+
+motor_config:
+    pole_pairs: 12
+    current_lim: 10.0 # (A)
+    calibration_current: 10.0 # (A)
+    torque_constant: 0.021763157099485397
+
+encoder_config:
+    cpr: 8192
+
+controller_config:
+    vel_limit: 3.0 # (encoder counts / sec)
+    vel_limit_tolerance: 2.0
+    pos_gain: 35.0
+    vel_gain: 0.023
+    vel_integrator_gain: 0.0
