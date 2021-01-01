@@ -8,6 +8,7 @@ local
 OldVersions
 lockfile.lck
 *.stl
+.vscode
 
 ### macOS ###
 # General
